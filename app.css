@@ -1,0 +1,38 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    background-color: #ffffff;
+    font-family: Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#calculator  {
+    margin:3em auto;
+    max-width: 250px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 0.8em;
+    border-radius: 8px;
+    
+    #display {
+        background-color: #f0f0f0;
+        min-height: 5em;
+        margin-bottom: 0.8em;
+        border-radius: 5px;
+    };
+    
+    #buttons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+        gap: 0.5em;
+    }
+    
+    button {
+        padding: 20px 0;
+        border: none;
+        border-radius: 5px;
+        background-color: #f5f5f5 ;
+    }
+    
+    
+}
+
