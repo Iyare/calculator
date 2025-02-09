@@ -9,6 +9,7 @@ body {
 #calculator  {
     margin:3em auto;
     max-width: 280px;
+    min-width: 280px;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 0.8em;
@@ -19,6 +20,23 @@ body {
         min-height: 8em;
         margin-bottom: 0.8em;
         border-radius: 5px;
+        
+        
+        #inputs {
+            /* font-family: 'Cursed Timer ULiL', sans-serif;  */
+            font-size: 1.8em;
+            display: flex;
+            justify-content: flex-end;
+            min-height: 80%;
+            padding: 0.5em;
+        }
+        #results {
+            font-size: 1.5em;
+            display: flex;
+            justify-content: flex-end;
+            padding: 0.5em;
+            font-size: 2em;
+        }
     };
     
     #buttons {
