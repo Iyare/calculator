@@ -1,7 +1,7 @@
 body {
     box-sizing: border-box;
     margin: 0;
-    background-color: #ffffff;
+    background-color: #e1f4fc;
     font-family: Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
 }
@@ -20,22 +20,22 @@ body {
         min-height: 8em;
         margin-bottom: 0.8em;
         border-radius: 5px;
-        
+        width: 100%;
         
         #inputs {
-            /* font-family: 'Cursed Timer ULiL', sans-serif;  */
+            overflow-wrap: anywhere;
             font-size: 1.8em;
             display: flex;
-            justify-content: flex-end;
             min-height: 80%;
             padding: 0.5em;
         }
         #results {
+            overflow-wrap: anywhere;
             font-size: 1.5em;
             display: flex;
             justify-content: flex-end;
             padding: 0.5em;
-            font-size: 2em;
+            font-size: 1.6em;
         }
     };
     

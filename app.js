@@ -24,10 +24,12 @@ const deleteBtn = document.querySelector("#delete");
 // display
 const inputDisplay = document.querySelector("#inputs");
 const resultDisplay = document.querySelector("#results");
+let subTotal = "";
 
 
 
-// Get display from the DOM
+
+// Add evenetlisteners
 
 one.addEventListener("click", function() {
     inputDisplay.textContent += "1";
@@ -59,31 +61,92 @@ nine.addEventListener("click", function() {
 zero.addEventListener("click", function() {
     inputDisplay.textContent += "0";
 });
-add.addEventListener("click", function() {
-    inputDisplay.textContent += " + ";
+add.addEventListener("click", function () {
+    let operator = add.value;
+    checkTotal();
+    checkOperator(operator);
+    inputDisplay.textContent += "+";
 });
-subtract.addEventListener("click", function() {
-    inputDisplay.textContent += " - ";
+subtract.addEventListener("click", function () {
+    let operator = subtract.value;
+    checkTotal();
+    checkOperator(operator);
+    inputDisplay.textContent += "-";
+    
 });
-multiply.addEventListener("click", function() {
-    inputDisplay.textContent += " * ";
+multiply.addEventListener("click", function () {
+    let operator = multiply.value;
+    checkTotal();
+
+    checkOperator(operator);
+    inputDisplay.textContent += "*";
 });
-divide.addEventListener("click", function() {
-    inputDisplay.textContent += " / ";
+
+divide.addEventListener("click", function () {
+    let operator = divide.value;
+    checkTotal();
+    inputDisplay.textContent += "/";  
 });
 decimal.addEventListener("click", function() {
     inputDisplay.textContent += ".";
 });
+
+percent.addEventListener("click", function () {
+    inputDisplay.textContent += "%";
+    let percentIndex = inputDisplay.textContent.indexOf("%");
+    let percentValue = inputDisplay.textContent.slice(0, percentIndex);
+    let percentResult = percentValue / 100;
+    inputDisplay.textContent = percentResult;
+});
+
 clear.addEventListener("click", function() {
     inputDisplay.textContent = "";
     resultDisplay.textContent = "";
+    subTotal = "";
 });
+
 equals.addEventListener("click", function () {
     const myEval = eval;
-    resultDisplay.textContent = myEval(inputDisplay.textContent);
+    let result = evaluate()
+    if (result === Infinity || result === NaN || result === -Infinity) {
+        resultDisplay.textContent = "Cannot divide by zero";
+        subTotal = "0";
+    } else {
+        resultDisplay.textContent = result
+        subTotal = myEval(inputDisplay.textContent);
+    }
 });
 
 deleteBtn.addEventListener("click", function() {
     inputDisplay.textContent = inputDisplay.textContent.slice(0, -1);
 
 });
+
+function evaluate() {
+      return eval(inputDisplay.textContent);
+}
+
+function checkTotal() {
+    if (resultDisplay.textContent !== "" && resultDisplay.textContent !== "Cannot divide by zero") {
+        subTotal = resultDisplay.textContent;
+        inputDisplay.textContent = subTotal;
+    } else {
+        resultDisplay.textContent = "";
+        subTotal = inputDisplay.textContent;
+    }
+}
+function getLastChar() { 
+    let lastChar = inputDisplay.textContent.slice(-1);
+    return lastChar;
+}
+
+function checkOperator(operator) {
+    let lastChar = getLastChar()
+    console.log(lastChar);
+    if (lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/") {
+        inputDisplay.textContent = inputDisplay.textContent.slice(0, -1);
+        console.log("last character is an operator");
+    } else {
+        console.log("can't identify last character");
+    }
+}
