@@ -94,9 +94,20 @@ decimal.addEventListener("click", function() {
 percent.addEventListener("click", function () {
     inputDisplay.textContent += "%";
     let percentIndex = inputDisplay.textContent.indexOf("%");
-    let percentValue = inputDisplay.textContent.slice(0, percentIndex);
+    // Get the last operator before the percentage sign
+    let lastOperator = inputDisplay.textContent.slice(0, percentIndex).match(/[\+\-\*\/](?!.*[\+\-\*\/])/);
+    let percentValue = "";
+    // Slice the string from the beginning to the percentage sign
+    if (lastOperator === null) {
+        percentValue = inputDisplay.textContent.slice(0, percentIndex);
+    } else {
+        percentValue = inputDisplay.textContent.slice(inputDisplay.textContent.lastIndexOf(lastOperator[0]) + 1, percentIndex);
+    }
+    // Convert the percentage value to a decimal
     let percentResult = percentValue / 100;
-    inputDisplay.textContent = percentResult;
+    
+    // Replace the percentage value with the decimal value
+    inputDisplay.textContent = inputDisplay.textContent.replace(percentValue + "%", percentResult);
 });
 
 clear.addEventListener("click", function() {
