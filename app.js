@@ -18,8 +18,12 @@ const equals = document.querySelector("#equals");
 const clear = document.querySelector("#clear");
 const decimal = document.querySelector("#decimal");
 const percent = document.querySelector("#percent");
-const negative = document.querySelector("#negative");
 const deleteBtn = document.querySelector("#delete");
+const extraFeaturesBtn = document.querySelector("#extra-features");    
+const leftBracket = document.querySelector("#left-bracket");
+const rightBracket = document.querySelector("#right-bracket");
+const squareRoot = document.querySelector("#square-root");
+const power = document.querySelector("#power");
 
 // display
 const inputDisplay = document.querySelector("#inputs");
@@ -28,6 +32,28 @@ let subTotal = "";
 let currentInput = "";
 
 // Add evenetlisteners
+extraFeaturesBtn.addEventListener("click", function () {
+    const firstRowButtons = document.querySelectorAll(".extra-features");
+    firstRowButtons.forEach(button => {
+        button.classList.toggle("hidden");
+    });
+});
+
+leftBracket.addEventListener("click", function () {
+    inputDisplay.textContent += "(";
+});
+
+rightBracket.addEventListener("click", function () {
+    inputDisplay.textContent += ")";
+});
+
+squareRoot.addEventListener("click", function () {
+    inputDisplay.textContent += "Math.sqrt(";
+});
+
+power.addEventListener("click", function () {
+    inputDisplay.textContent += "**";
+});
 
 one.addEventListener("click", function () {
     inputDisplay.textContent += "1";
@@ -119,7 +145,7 @@ clear.addEventListener("click", function () {
 
 equals.addEventListener("click", function () {
   let result = evaluate();
-  if (result === Infinity || result === NaN || result === -Infinity) {
+  if (result === Infinity || isNaN(result) || result === -Infinity) {
     resultDisplay.textContent = "Cannot divide by zero";
     subTotal = "0";
   } else {
@@ -170,3 +196,4 @@ function checkOperator() {
       console.log("last character is not an operator");
     }
 }
+
